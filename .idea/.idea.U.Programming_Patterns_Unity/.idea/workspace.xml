@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="49869413-4ad2-4ae9-9ff4-4f64f426e237" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Input/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Input/Controller.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Input/Controller.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/Command.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/Command.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/CommandNull.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/CommandNull.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/CommandNull.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/CommandNull.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/FireCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/FireCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/FireCommand.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/FireCommand.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/InputHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/InputHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/JumpCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/JumpCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/JumpCommand.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/JumpCommand.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/MoveUnitCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/MoveUnitCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/MoveUnitCommand.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/MoveUnitCommand.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/UndoHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/UndoHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Patterns/CommandPattern/Unit.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Patterns/CommandPattern/CommandCollection.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectId" id="2U0SZjCBlCWr96Vo7fxHl1EmeNY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\mupet\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\mupet\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\mupet\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.5f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Gits\U.Programming_Patterns_Unity -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Gits\U.Programming_Patterns_Unity" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.5f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Gits\U.Programming_Patterns_Unity -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="D:\Gits\U.Programming_Patterns_Unity" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="49869413-4ad2-4ae9-9ff4-4f64f426e237" name="Changes" comment="" />
+      <created>1692075074235</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1692075074235</updated>
+      <workItem from="1692075079830" duration="6537000" />
+      <workItem from="1692081894715" duration="268000" />
+      <workItem from="1692082272119" duration="1627000" />
+      <workItem from="1692084046019" duration="52000" />
+      <workItem from="1692119351520" duration="596000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
