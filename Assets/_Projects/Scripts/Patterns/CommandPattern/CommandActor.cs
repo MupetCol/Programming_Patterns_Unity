@@ -23,5 +23,13 @@ namespace GPP
         public void Fire(){
             Debug.Log("Fire");
         }
+
+        public void ChangePos(Vector2 newPos){
+            transform.localPosition = newPos;
+        }
+
+        public void Buy(FloatReference wallet){
+            
+        }
     }
 }

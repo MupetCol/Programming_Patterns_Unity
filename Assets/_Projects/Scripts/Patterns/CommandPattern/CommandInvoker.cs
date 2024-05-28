@@ -5,12 +5,13 @@ namespace GPP
 {
     public class CommandInvoker : MonoBehaviour
     {     
+        private static CommandActor staticActor;
 
-        public CommandActor currentActor;
         [SerializeField] private CommandInputHandler commandInputHandler;
-        private Stack<Command> _commands = new Stack<Command>();
+        private static Stack<Command> _commands = new Stack<Command>();
 
-        private void Update()
+
+        /*private void Update()
         {
             var command = commandInputHandler.HandleInput();
 
@@ -20,10 +21,11 @@ namespace GPP
                 //Inmmediate execute
                 command.Execute(currentActor);
             }
-        }
+        }*/
 
-        public void Add(Command command)
+        public static void Add(Command command)
         {
+            command.Execute();
             _commands.Push(command);
         }
 
@@ -33,7 +35,7 @@ namespace GPP
         {
             foreach (var command in _commands)
             {
-                command.Execute(currentActor);
+                command.Execute();
             }
         }
 
@@ -42,7 +44,7 @@ namespace GPP
             if (_commands.Count > 0)
             {
                 var command = _commands.Pop();
-                command.Undo(currentActor);
+                command.Undo();
             }
         }
 

@@ -20,6 +20,7 @@ public class CurvedLinePoint : MonoBehaviour
 	//update parent line when this point moved
 	void OnDrawGizmosSelected()
 	{
+		if(!transform.parent.GetComponent<CurvedLineRenderer>()) return;
 		CurvedLineRenderer curvedLine = this.transform.parent.GetComponent<CurvedLineRenderer>();
 
 		if( curvedLine != null )

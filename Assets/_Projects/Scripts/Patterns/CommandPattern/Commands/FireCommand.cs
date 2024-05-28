@@ -4,12 +4,15 @@ namespace GPP
 {
     public class FireCommand : Command
     {     
-        public override void Execute(CommandActor actor)
+        public FireCommand(CommandActor actor){
+            _actor = actor;
+        }
+        public override void Execute()
         {
-            actor.Fire();
+            _actor.Fire();
         }
 
-        public override void Undo(CommandActor actor)
+        public override void Undo()
         {
             throw new System.NotImplementedException();
         }

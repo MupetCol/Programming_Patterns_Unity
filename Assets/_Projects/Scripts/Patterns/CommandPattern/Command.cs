@@ -1,8 +1,10 @@
+using System;
 using GPP;
 
 [System.Serializable]
 public abstract class Command
 {
+    protected CommandActor _actor;
     /*
         * "A command is a reified method call."
         * 
@@ -16,8 +18,8 @@ public abstract class Command
         * plug-in a more aggressive AI to generate commands for it. In fact, we can even bolt AI onto the player’s character, which can be useful for things like
         * demo mode where the game needs to run on auto-pilot.
         */
-    public abstract void Execute(CommandActor actor);
+    public abstract void Execute();
 
-    public abstract void Undo(CommandActor actor);
+    public abstract void Undo();
 }
 

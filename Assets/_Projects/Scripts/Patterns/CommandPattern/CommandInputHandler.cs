@@ -7,21 +7,23 @@ namespace GPP
 {
     public class CommandInputHandler : MonoBehaviour
     {     
+        [SerializeField] private CommandActor _actor;
         private InputMap _inputMap;
+
+        public static MoveSpot currentSpot;
         
         // KEYMAP SWITCHING LOGIC
         public enum KeyMaps {WestButton, SouthButton};
         public enum Commands {Fire, Jump};
         public List<InputPairing> inputPairings = new List<InputPairing>();
 
-        // COMMANDS 
-        private FireCommand fireCommand = new FireCommand();
-        private JumpCommand jumpCommand = new JumpCommand();
+        private Wallet playerWallet;
 
         private void Awake()
         {
             _inputMap = new InputMap();
             _inputMap.Player.Enable();
+            playerWallet = FindObjectOfType<Wallet>();
         } 
 
         public Command HandleInput()
@@ -30,7 +32,7 @@ namespace GPP
                 Debug.Log("Added move command");
 
                 Vector2 dir = _inputMap.Player.DPad.ReadValue<Vector2>();
-                return new MoveCommand(dir);
+                return new MoveCommand(dir, _actor);
             }
 
             if(_inputMap.Player.WestButton.WasPressedThisFrame()){
@@ -45,15 +47,21 @@ namespace GPP
             return null;
         }
 
+        public void RunChangePosCommand(Transform newPos)
+        {
+            Command command = new ChangePosCommand(_actor, newPos.position, playerWallet, currentSpot);
+            CommandInvoker.Add(command);
+        }
+
         private Command PairedCommand(int command){
 
             switch(command){
 
                 case (int)Commands.Fire:
-                return fireCommand;
+                return new FireCommand(_actor);
 
                 case (int)Commands.Jump:
-                return jumpCommand;
+                return new JumpCommand(_actor);
 
                 default:
                 return null;
