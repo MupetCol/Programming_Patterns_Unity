@@ -11,7 +11,10 @@ namespace GPP
         [HideInInspector]
         public tradeItems tradeItemSelected = tradeItems.Coins;
         public int tradeIndex = 0;
-        private int tradeCount = 0;
+        
+        //Min 1
+        public int tradeAmmount = 1;
+        private int tradeItemConversions = 0;
         
 
 
@@ -19,9 +22,9 @@ namespace GPP
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
 
         private void Awake(){
-            tradeCount = itemsTradeValues.Count - 1;
+            tradeItemConversions = itemsTradeValues.Count - 1;
             //enumCount = tradeItems.GetNames(typeof(tradeItems)).Length - 1;
-            Debug.Log(tradeCount);
+            Debug.Log(tradeItemConversions);
         }
 
         
@@ -41,7 +44,7 @@ namespace GPP
             
             tradeIndex++;
 
-            if(tradeIndex >= tradeCount){
+            if(tradeIndex >= tradeItemConversions){
                 return false;
             }
 
@@ -51,7 +54,7 @@ namespace GPP
 
         public bool PreviousTradeItem(){
             tradeIndex--;
-            if(tradeIndex <= tradeCount){
+            if(tradeIndex <= tradeItemConversions){
                 return false;
             }
             
