@@ -13,11 +13,14 @@ namespace GPP
         [SerializeField] private Image tradeItemImage;
         [SerializeField] private TMP_Text tradeItemUnits, itemUnits;
         private ShopItem item;
+        private InventoryUI inventoryUI;
         private int currTradeItemValue = -1;
         private void Awake()
         {
+            inventoryUI = FindObjectOfType<InventoryUI>();
             item = GetComponentInParent<ShopItem>();
             currTradeItemValue = item.itemsTradeValues[item.tradeIndex].quantity;
+            ResetTrade();
             prevItemBtn.gameObject.SetActive(false);
             decreaseUnitsBtn.gameObject.SetActive(false);
         }
@@ -67,6 +70,7 @@ namespace GPP
         {   
             //Reflect on the profit visuals
             //This is part of a undoable command so have to create UndoTrade()
+            inventoryUI.UpdateItem(true,item.shopItemType);
             ResetTrade();
         }
 

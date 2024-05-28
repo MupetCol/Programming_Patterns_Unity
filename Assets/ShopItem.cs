@@ -5,18 +5,16 @@ namespace GPP
 {
     public class ShopItem : MonoBehaviour
     {     
-        public enum tradeItems {Coins, Flowers, Paintings};
-        public int availableUnits = 1;
+        public enum itemTypes {Coins, Flowers, Paintings};
 
         [HideInInspector]
-        public tradeItems tradeItemSelected = tradeItems.Coins;
+        public itemTypes tradeItemSelected = itemTypes.Coins;
+        public itemTypes shopItemType = itemTypes.Coins;
+  
         public int tradeIndex = 0;
-        
         //Min 1
         public int tradeAmmount = 1;
         private int tradeItemConversions = 0;
-        
-
 
         //List of each type of item in the enum, below list of values of that item that costs this shop item
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
@@ -25,18 +23,6 @@ namespace GPP
             tradeItemConversions = itemsTradeValues.Count - 1;
             //enumCount = tradeItems.GetNames(typeof(tradeItems)).Length - 1;
             Debug.Log(tradeItemConversions);
-        }
-
-        
-
-        public void Buy(int units){
-            if(availableUnits < units) return;
-
-            availableUnits -= units;
-        }
-
-        public void SellBack(int units){
-            availableUnits += units;
         }
 
 
@@ -48,7 +34,7 @@ namespace GPP
                 return false;
             }
 
-            tradeItemSelected = (tradeItems)tradeIndex;
+            tradeItemSelected = (itemTypes)tradeIndex;
             return true;
         }
 
@@ -59,15 +45,14 @@ namespace GPP
             }
             
 
-            tradeItemSelected = (tradeItems)tradeIndex;
+            tradeItemSelected = (itemTypes)tradeIndex;
             return true;
         }
     }
 
     [System.Serializable]
-
     public class ItemTrade{
-        public ShopItem.tradeItems itemType;
+        public ShopItem.itemTypes itemType;
         public Sprite itemSprite;
         public int quantity;
     }
