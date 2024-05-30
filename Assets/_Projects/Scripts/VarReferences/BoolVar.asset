@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 036a0eb2520b2f44180821e01b594e92, type: 3}
   m_Name: BoolVar
-  m_EditorClassIdentifier: Assembly-CSharp:GPP:BoolVariable
+  m_EditorClassIdentifier: 
   Value: 0

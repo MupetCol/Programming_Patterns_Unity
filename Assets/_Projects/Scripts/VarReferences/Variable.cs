@@ -13,24 +13,14 @@ namespace GPP
         }
     }
 
-    [CreateAssetMenu(menuName = "Variables/Float", fileName = "FloatVar")]
-    public class FloatVariable:Variable<float>{
-
-    }
-
-    [CreateAssetMenu(menuName = "Variables/Bool", fileName = "BoolVar")]
-    public class BoolVariable:Variable<bool>{
-
-    }
-
     [System.Serializable]
-    public class FloatReference
+    public class VariableReference<T>
     {
         public bool UseConstant = true;
-        public float ConstantValue;
-        public FloatVariable Variable;
+        public T ConstantValue;
+        public Variable<T> Variable;
 
-        public float Value{
+        public T Value{
             get{return UseConstant? ConstantValue:
             Variable.Value;}
         }
