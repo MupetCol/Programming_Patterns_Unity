@@ -10,8 +10,9 @@ namespace TKS
 
         public void Raise()
         {
-            for (int i = _listeners.Count; i >= 0; i--)
+            for (int i = _listeners.Count-1; i >= 0; i--)
             {
+                Debug.Log(_listeners.Count + " " + i);
                 _listeners[i].OnEventRaised();
             }
         }
