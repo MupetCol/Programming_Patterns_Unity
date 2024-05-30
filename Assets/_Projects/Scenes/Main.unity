@@ -8231,7 +8231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 5
     Variable: {fileID: 11400000, guid: 1c7958f2db3790244a8f2d14961ee21c, type: 2}
   playerTookDamage: {fileID: 11400000, guid: 860fe3950925bfa4b85a78205cc3d465, type: 2}
@@ -8248,7 +8248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthPoints:
-    UseConstant: 0
+    UseConstant: 1
     ConstantValue: 111
     Variable: {fileID: 0}
   playerTookDamage: {fileID: 0}
