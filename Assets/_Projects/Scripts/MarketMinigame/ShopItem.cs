@@ -8,7 +8,7 @@ namespace GPP
     {     
         public enum itemTypes {Coins, Flowers, Paintings};
 
-        [SerializeField] private Sprite _itemSprite;
+        public Sprite itemSprite;
 
         [HideInInspector]
         public itemTypes tradeItemSelected = itemTypes.Coins;
@@ -23,7 +23,7 @@ namespace GPP
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
 
         private void Awake(){
-            transform.GetChild(0).GetComponent<Image>().sprite = _itemSprite;   
+            transform.GetChild(0).GetComponent<Image>().sprite = itemSprite;   
             tradeItemConversions = itemsTradeValues.Count - 1;
             //enumCount = tradeItems.GetNames(typeof(tradeItems)).Length - 1;
             Debug.Log(tradeItemConversions);
