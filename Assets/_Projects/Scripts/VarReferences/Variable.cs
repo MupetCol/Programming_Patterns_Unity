@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace GPP
@@ -23,6 +24,7 @@ namespace GPP
         public T Value{
             get{return UseConstant? ConstantValue:
             Variable.Value;}
+            set { Variable.Value = value; }
         }
     }
 }

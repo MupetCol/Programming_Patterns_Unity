@@ -1,11 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GPP
 {
     public class ShopItem : MonoBehaviour
     {     
         public enum itemTypes {Coins, Flowers, Paintings};
+
+        [SerializeField] private Sprite _itemSprite;
 
         [HideInInspector]
         public itemTypes tradeItemSelected = itemTypes.Coins;
@@ -20,6 +23,7 @@ namespace GPP
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
 
         private void Awake(){
+            transform.GetChild(0).GetComponent<Image>().sprite = _itemSprite;   
             tradeItemConversions = itemsTradeValues.Count - 1;
             //enumCount = tradeItems.GetNames(typeof(tradeItems)).Length - 1;
             Debug.Log(tradeItemConversions);
@@ -54,6 +58,6 @@ namespace GPP
     public class ItemTrade{
         public ShopItem.itemTypes itemType;
         public Sprite itemSprite;
-        public int quantity;
+        public int tradeCost;
     }
 }

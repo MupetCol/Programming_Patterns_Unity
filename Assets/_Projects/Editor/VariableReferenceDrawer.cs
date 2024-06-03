@@ -17,10 +17,10 @@ namespace GPP
             var dropdownRect = new Rect(position.x, position.y, 20, position.height);
             var inputRect = new Rect(position.x + 25, position.y, position.width - 26, position.height);
 
-            //get bool property
+            // Get bool property
             var useConstantProp = property.FindPropertyRelative("UseConstant");
 
-            // remove background
+            // Remove background
             GUI.backgroundColor = new Color(0, 0, 0, 0);
             GUI.contentColor = new Color(0, 0, 0, 0);
 
@@ -37,7 +37,7 @@ namespace GPP
             GUI.backgroundColor = Color.white;
             GUI.contentColor = Color.white;
 
-            // show appropriate input
+            // Show appropriate input field
             if (useConstantProp.boolValue)
             {
                 EditorGUI.PropertyField(inputRect, property.FindPropertyRelative("ConstantValue"), GUIContent.none);
@@ -48,7 +48,6 @@ namespace GPP
             }
             EditorGUI.indentLevel = indent;
             EditorGUI.EndProperty();
-
         }
     }
 }

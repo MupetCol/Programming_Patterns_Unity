@@ -12,14 +12,16 @@ namespace GPP
         [SerializeField] private Button nextItemBtn, prevItemBtn, increaseUnitsBtn, decreaseUnitsBtn;
         [SerializeField] private Image tradeItemImage;
         [SerializeField] private TMP_Text tradeItemUnits, itemUnits;
+        [SerializeField] private FloatReference playerCoins;
         private ShopItem item;
         private InventoryUI inventoryUI;
         private int currTradeItemValue = -1;
         private void Awake()
         {
-            inventoryUI = FindObjectOfType<InventoryUI>();
-            item = GetComponentInParent<ShopItem>();
-            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].quantity;
+            inventoryUI = FindObjectOfType<InventoryUI>(); 
+            //REFACTOR FOR ALL SHOP ITEMS
+            //item = GetComponentInParent<ShopItem>();
+            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].tradeCost;
             ResetTrade();
             prevItemBtn.gameObject.SetActive(false);
             decreaseUnitsBtn.gameObject.SetActive(false);
@@ -32,7 +34,7 @@ namespace GPP
             prevItemBtn.gameObject.SetActive(true);
             tradeItemImage.sprite = item.itemsTradeValues[item.tradeIndex].itemSprite;
 
-            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].quantity;
+            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].tradeCost;
             ResetTrade();
         }
 
@@ -43,7 +45,7 @@ namespace GPP
             nextItemBtn.gameObject.SetActive(true);
             tradeItemImage.sprite = item.itemsTradeValues[item.tradeIndex].itemSprite;
 
-            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].quantity;
+            currTradeItemValue = item.itemsTradeValues[item.tradeIndex].tradeCost;
             ResetTrade();
         }
 
@@ -70,8 +72,15 @@ namespace GPP
         {   
             //Reflect on the profit visuals
             //This is part of a undoable command so have to create UndoTrade()
-            inventoryUI.UpdateItem(true,item.shopItemType);
-            ResetTrade();
+            if(item.itemsTradeValues[item.tradeIndex].itemType == ShopItem.itemTypes.Coins)
+            {
+                playerCoins.Value -= item.itemsTradeValues[item.tradeIndex].tradeCost;
+            }
+            else
+            {
+                inventoryUI.UpdateItem(true, item.shopItemType);
+                ResetTrade();
+            }
         }
 
         private void UpdateTradeTotal()

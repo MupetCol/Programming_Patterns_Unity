@@ -21,11 +21,11 @@ namespace GPP
         
 
             if(add){
-                itemsOwned[itemSelectedIndex].quantity++;
+                itemsOwned[itemSelectedIndex].tradeCost++;
             }else{
-                itemsOwned[itemSelectedIndex].quantity--;
+                itemsOwned[itemSelectedIndex].tradeCost--;
             }
-            texts[itemSelectedIndex].text = itemsOwned[itemSelectedIndex].quantity.ToString();
+            texts[itemSelectedIndex].text = itemsOwned[itemSelectedIndex].tradeCost.ToString();
         }
     }
 }
