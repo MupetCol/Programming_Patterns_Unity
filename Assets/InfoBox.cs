@@ -8,5 +8,6 @@ namespace GPP
     {
         public Image shopItemImage, tradeItemImage;
         public TMP_Text radeItemValueText;
+        public Button attachToNotebookBtn;
     }
 }

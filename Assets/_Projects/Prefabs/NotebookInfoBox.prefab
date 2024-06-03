@@ -383,7 +383,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.0000076293945, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -12.6869, y: -12.0028}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3038558220886132199
 CanvasRenderer:
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74faf967180ea1b4b99ac8e64b34829e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67aa2a1f16a7a6743b390ddf48e3d31a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -509,10 +509,10 @@ GameObject:
   - component: {fileID: 8333732608095369858}
   - component: {fileID: 5517295106073670619}
   - component: {fileID: 827046683606550174}
-  - component: {fileID: 1368775437147463269}
   - component: {fileID: 8854785525573312276}
+  - component: {fileID: 7584889312429254350}
   m_Layer: 0
-  m_Name: InfoBox
+  m_Name: NotebookInfoBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,22 +579,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1368775437147463269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8880039503500668269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d93e23c4a449124eb6a12ee4f046d4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shopItemImage: {fileID: 4843785566581993713}
-  tradeItemImage: {fileID: 4212556329082385977}
-  radeItemValueText: {fileID: 2488821946930019009}
-  attachToNotebookBtn: {fileID: 6095643473030772507}
 --- !u!114 &8854785525573312276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,6 +605,22 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &7584889312429254350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8880039503500668269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8d080f078352f47b56bc7d2a21b3c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopItemImage: {fileID: 4843785566581993713}
+  tradeItemImage: {fileID: 4212556329082385977}
+  tradeItemValueText: {fileID: 2488821946930019009}
+  referenceInfoBox: {fileID: 0}
 --- !u!1 &8941798586184643280
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +634,6 @@ GameObject:
   - component: {fileID: 2399228535138716150}
   - component: {fileID: 6095643473030772507}
   - component: {fileID: 4598948167578933021}
-  - component: {fileID: 6335413816697863950}
   m_Layer: 0
   m_Name: NotebookButton
   m_TagString: Untagged
@@ -744,22 +743,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6335413816697863950}
-        m_TargetAssemblyTypeName: GPP.AttackToNoteBook, Assembly-CSharp
-        m_MethodName: AttachInfoBoxToNotebook
+      - m_Target: {fileID: 7584889312429254350}
+        m_TargetAssemblyTypeName: GPP.NotebookInfoBox, Assembly-CSharp
+        m_MethodName: RemoveFromNotebook
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6095643473030772507}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -788,17 +775,3 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &6335413816697863950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8941798586184643280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8fe23c9d68779044b8e0d2fd4f3e122, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notebookInfoBox: {fileID: 7584889312429254350, guid: 2bf7324953451684197e07d867e9ae49, type: 3}
-  infoBox: {fileID: 1368775437147463269}

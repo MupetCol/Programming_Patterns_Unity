@@ -2,9 +2,10 @@ using UnityEngine;
 
 namespace GPP
 {
-    public class AttackToNoteBook : MonoBehaviour
+    public class AttachToNotebook : MonoBehaviour
     {
         private NotebookHandler notebook;
+        [SerializeField] private NotebookInfoBox notebookInfoBox;
         [SerializeField] private InfoBox infoBox;
         private void Awake()
         {
@@ -14,7 +15,9 @@ namespace GPP
 
         public void AttachInfoBoxToNotebook()
         {
-            Instantiate(infoBox.gameObject,notebook.transform);
+            NotebookInfoBox info = Instantiate(notebookInfoBox,notebook.transform);
+            info.Init(infoBox.shopItemImage.sprite, infoBox.tradeItemImage.sprite,
+                infoBox.radeItemValueText.text.ToString(), infoBox);
         }
     }
 }
