@@ -3380,9 +3380,12 @@ GameObject:
   m_Component:
   - component: {fileID: 441902879}
   - component: {fileID: 441902883}
+  - component: {fileID: 441902885}
   - component: {fileID: 441902882}
   - component: {fileID: 441902880}
   - component: {fileID: 441902884}
+  - component: {fileID: 441902887}
+  - component: {fileID: 441902886}
   m_Layer: 0
   m_Name: MerchantNotebook
   m_TagString: Untagged
@@ -3406,7 +3409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -586, y: -279}
+  m_AnchoredPosition: {x: -586, y: -692}
   m_SizeDelta: {x: 260, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &441902880
@@ -3485,6 +3488,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ebcf80891f0334eb17aed449fccd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &441902885
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441902878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 527b6c4be4e0b994bbecf228d1cd6b56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &441902886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441902878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 441902884}
+          m_TargetAssemblyTypeName: GPP.NotebookHandler, Assembly-CSharp
+          m_MethodName: ToggleNotebookSate
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &441902887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441902878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff97b5d0a11bb844b4da87e0f6844de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHidden: 1
 --- !u!1 &442440622
 GameObject:
   m_ObjectHideFlags: 0
