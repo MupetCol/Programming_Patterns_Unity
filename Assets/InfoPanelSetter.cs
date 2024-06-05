@@ -21,12 +21,12 @@ namespace GPP
             }
             foreach (ShopItem item in shopItems)
             {
-                for (int i = 0; i < item.itemsTradeValues.Count; i++)
+                for (int i = 0; i < item.data.itemsTradeValues.Count; i++)
                 {
                     InfoBox box = Instantiate(infoBoxPrefab, transform);
-                    box.shopItemImage.sprite = item.itemSprite;
-                    box.tradeItemImage.sprite = item.itemsTradeValues[i].itemSprite;
-                    box.radeItemValueText.text = item.itemsTradeValues[i].tradeCost.ToString();
+                    box.shopItemImage.sprite = item.data.itemSprite;
+                    box.tradeItemImage.sprite = item.data.itemsTradeValues[i].itemSprite;
+                    box.radeItemValueText.text = item.data.itemsTradeValues[i].tradeCost.ToString();
                 }
             }
         }
@@ -41,11 +41,11 @@ namespace GPP
 
             foreach (ShopItem item in shopItems)
             {
-                if(item.itemsTradeValues.Count == 0)
+                if(item.data.itemsTradeValues.Count == 0)
                 {
                     Debug.LogWarning("No Trade Info to Display, Check Shopitem: " + item.name);
                 }
-                for (int i = 0; i < item.itemsTradeValues.Count; i++)
+                for (int i = 0; i < item.data.itemsTradeValues.Count; i++)
                 {
                     InfoBox box;
                     if(boxes.Count > i)
@@ -57,9 +57,9 @@ namespace GPP
                         box = Instantiate(infoBoxPrefab, transform);
                     }
                     
-                    box.shopItemImage.sprite = item.itemSprite;
-                    box.tradeItemImage.sprite = item.itemsTradeValues[i].itemSprite;
-                    box.radeItemValueText.text = item.itemsTradeValues[i].tradeCost.ToString();
+                    box.shopItemImage.sprite = item.data.itemSprite;
+                    box.tradeItemImage.sprite = item.data.itemsTradeValues[i].itemSprite;
+                    box.radeItemValueText.text = item.data.itemsTradeValues[i].tradeCost.ToString();
                 }
             }
         }
