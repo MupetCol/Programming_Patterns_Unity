@@ -73,6 +73,7 @@ namespace GPP
             public ShopItem.itemTypes itemType;
             public Sprite itemSprite;
             public int unitsOwned;
+            public int resellCoinsValue;
         }
     }
 }
