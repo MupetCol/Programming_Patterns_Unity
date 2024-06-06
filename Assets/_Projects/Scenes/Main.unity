@@ -871,8 +871,8 @@ MonoBehaviour:
   increaseUnitsBtn: {fileID: 1548905456}
   decreaseUnitsBtn: {fileID: 1039944452}
   tradeItemImage: {fileID: 2039829341}
-  tradeItemUnits: {fileID: 154491418}
-  itemUnits: {fileID: 791497921}
+  tradeItemUnitsTxt: {fileID: 154491418}
+  shopItemUnitsTxt: {fileID: 791497921}
   playerCoins:
     UseConstant: 0
     ConstantValue: 0
@@ -883,8 +883,6 @@ MonoBehaviour:
       itemSprite: {fileID: 0}
       tradeItemSelected: 0
       shopItemType: 0
-      tradeIndex: 0
-      tradeAmmount: 1
       itemsTradeValues: []
     Variable: {fileID: 11400000, guid: d69e191ccac5f8547821c51b2febf496, type: 2}
 --- !u!1 &127879005
@@ -3798,7 +3796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5377358, g: 0.52372634, b: 0.3931559, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4225,7 +4223,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 107434115}
         m_TargetAssemblyTypeName: GPP.TradeUIHandler, Assembly-CSharp
-        m_MethodName: NextItem
+        m_MethodName: NextTradeItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7168,7 +7166,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 107434115}
         m_TargetAssemblyTypeName: GPP.TradeUIHandler, Assembly-CSharp
-        m_MethodName: PreviousItem
+        m_MethodName: PreviousTradeItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8068,16 +8066,12 @@ MonoBehaviour:
       itemSprite: {fileID: 0}
       tradeItemSelected: 0
       shopItemType: 0
-      tradeIndex: 0
-      tradeAmmount: 1
       itemsTradeValues: []
     Variable: {fileID: 11400000, guid: d69e191ccac5f8547821c51b2febf496, type: 2}
   data:
     itemSprite: {fileID: 21300000, guid: 8bbfd2a00925f8049884670262126b22, type: 3}
     tradeItemSelected: 0
     shopItemType: 2
-    tradeIndex: 1
-    tradeAmmount: 1
     itemsTradeValues:
     - itemType: 0
       itemSprite: {fileID: 21300000, guid: 158a74d1410266746ae0e7fe37ac2a91, type: 3}
@@ -8171,18 +8165,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GPP.ShopItem, Assembly-CSharp
         m_MethodName: SelectShopItem
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1039370719}
-        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
-        m_MethodName: set_interactable
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d49283147868fd4eb7b17092e5a1667, type: 3}
-  m_Name: ShopItemTemplate
+  m_Script: {fileID: 11500000, guid: d46b02e002be8934ebed36c04a2fef1b, type: 3}
+  m_Name: Money
   m_EditorClassIdentifier: 
-  Value:
-    itemSprite: {fileID: 0}
-    tradeItemSelected: 0
-    shopItemType: 0
-    itemsTradeValues: []
+  Reset: 1
+  Value: 1000
+  BaseValue: 1000
