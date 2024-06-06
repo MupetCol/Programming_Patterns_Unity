@@ -26,18 +26,12 @@ namespace GPP
     public class ShopItemData
     {
         public Sprite itemSprite;
-
-        [HideInInspector]
-        public ShopItem.itemTypes tradeItemSelected = ShopItem.itemTypes.Coins;
         public ShopItem.itemTypes shopItemType = ShopItem.itemTypes.Coins;
-
-        //List of each type of item in the enum, below list of values of that item that costs this shop item
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
 
         public void Reset()
         {
             itemsTradeValues.Clear();
-            tradeItemSelected = ShopItem.itemTypes.Coins;
             shopItemType = ShopItem.itemTypes.Coins;
             itemSprite = null;
         }

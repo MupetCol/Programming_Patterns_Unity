@@ -6,9 +6,12 @@ using UnityEngine.PlayerLoop;
 namespace GPP
 {
     public class CommandInputHandler : MonoBehaviour
-    {     
+    {
+        [SerializeField] private TradeReference _currenTrade;
+        [SerializeField] private FloatReference _playerCoins;
         [SerializeField] private CommandActor _actor;
         private InputMap _inputMap;
+        private InventoryUI _inventoryUI;
 
         public static MoveSpot currentSpot;
         
@@ -21,6 +24,7 @@ namespace GPP
 
         private void Awake()
         {
+            _inventoryUI = FindObjectOfType<InventoryUI>();
             _inputMap = new InputMap();
             _inputMap.Player.Enable();
             playerWallet = FindObjectOfType<Wallet>();
@@ -50,6 +54,12 @@ namespace GPP
         public void RunChangePosCommand(Transform newPos)
         {
             Command command = new ChangePosCommand(_actor, newPos.position, playerWallet, currentSpot);
+            CommandInvoker.Add(command);
+        }
+
+        public void RunBuyCommand()
+        {
+            Command command = new BuyCommand(_currenTrade.Value.tradedUnits, _playerCoins, _currenTrade.Value.tradedItem, _inventoryUI);
             CommandInvoker.Add(command);
         }
 

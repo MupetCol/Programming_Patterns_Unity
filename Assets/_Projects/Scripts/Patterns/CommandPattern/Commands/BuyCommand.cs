@@ -4,47 +4,40 @@ namespace GPP
 {
     public class BuyCommand : Command
     {     
-        public enum PurchaseType {Gas, Item};
-        private Wallet _wallet;
+        private InventoryUI _inventoryUI;
+        private FloatReference _playerCoins;
         private int _cost;
-        private int _purchaseType;
+        private ShopItem.itemTypes _purchaseType;
 
-        public BuyCommand(Wallet wallet, int cost, int purchaseType)
+        public BuyCommand(int cost, FloatReference playerCoins, ShopItem.itemTypes purchaseType, InventoryUI inventoryUI)
         {
-            _wallet = wallet;
             _cost = cost;
             _purchaseType = purchaseType;
+            _inventoryUI = inventoryUI;
+            _playerCoins = playerCoins;
         }
 
         public override void Execute()
         {
-            switch(_purchaseType){
-                case(int)PurchaseType.Gas:
-                _wallet.PayGas(_cost);
-                break;
-                
-                case(int)PurchaseType.Item:
-                _wallet.BuyItem(_cost);
-                break;
-
-                default:
-                break;
+            if(_purchaseType == ShopItem.itemTypes.Coins)
+            {
+                _playerCoins.Value -= _cost;
+            }
+            else
+            {
+                _inventoryUI.UpdateItem(-_cost, _purchaseType);
             }
         }
 
         public override void Undo()
         {
-            switch(_purchaseType){
-                case(int)PurchaseType.Gas:
-                _wallet.ReturnGas();
-                break;
-                
-                case(int)PurchaseType.Item:
-                _wallet.ReturnItem();
-                break;
-
-                default:
-                break;
+            if (_purchaseType == ShopItem.itemTypes.Coins)
+            {
+                _playerCoins.Value += _cost;
+            }
+            else
+            {
+                _inventoryUI.UpdateItem(_cost, _purchaseType);
             }
         }
     }

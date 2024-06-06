@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46b02e002be8934ebed36c04a2fef1b, type: 3}
   m_Name: PlayerCoins
   m_EditorClassIdentifier: 
+  Reset: 1
   Value: 1000
+  BaseValue: 1000

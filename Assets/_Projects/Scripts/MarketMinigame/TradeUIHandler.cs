@@ -1,3 +1,4 @@
+using System;
 using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 using TMPro;
@@ -9,13 +10,21 @@ using static GPP.ShopItem;
 
 namespace GPP
 {
+    [Serializable]
+    public class TradeData
+    {
+        public ShopItem.itemTypes tradedItem, shopItem;
+        public int tradedUnits, boughtUnits;
+    }
+
     public class TradeUIHandler : MonoBehaviour
     {
         [SerializeField] private Button nextItemBtn, prevItemBtn, increaseUnitsBtn, decreaseUnitsBtn;
         [SerializeField] private Image tradeItemImage;
-        [SerializeField] private TMP_Text tradeItemUnitsTxt, shopItemUnitsTxt;
+        [SerializeField] private TMP_Text tradeItemUnitsTxt, ShopItemUnitsTxt;
         [SerializeField] private FloatReference playerCoins;
         [SerializeField] private ShopItemReference ShopItemData;
+        [SerializeField] private TradeReference tradeData;
 
         private int tradeItemConversions = 0;
 
@@ -24,8 +33,17 @@ namespace GPP
         private InventoryUI inventoryUI;
 
         private int tradeIndex = 0;
-        private int tradeItemUnits = 1;
-        private int shopItemUnits = 1;
+
+        private int TradeItemUnits { get { return tradeData.Value.tradedUnits; 
+        }
+            set { tradeData.Value.tradedUnits = value; }
+        }
+
+        private int ShopItemUnits
+        {
+            get { return tradeData.Value.boughtUnits; }
+            set { tradeData.Value.boughtUnits = value; }
+        }
 
         public bool CheckNext()
         {
@@ -38,7 +56,7 @@ namespace GPP
                 return false;
             }
 
-            ShopItemData.Value.tradeItemSelected = (itemTypes)tradeIndex;
+            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             return true;
         }
 
@@ -50,8 +68,7 @@ namespace GPP
                 return false;
             }
 
-
-            ShopItemData.Value.tradeItemSelected = (itemTypes)tradeIndex;
+            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             return true;
         }
 
@@ -68,6 +85,7 @@ namespace GPP
         {
             if(ShopItemData.Value.shopItemType != ShopItem.itemTypes.Coins && !UIParent.activeSelf){
                 //IF ISN'T COIN WE ASSUME ITS A VALID SHOP DATA VALUE
+                tradeData.Value.shopItem = ShopItemData.Value.shopItemType;
                 tradeItemConversions = ShopItemData.Value.itemsTradeValues.Count;
                 SetTradeUI(false, nextItemBtn.gameObject, prevItemBtn.gameObject);
                 UIParent.SetActive(true);}
@@ -102,53 +120,39 @@ namespace GPP
             conditionalObject.SetActive(buttonActiveState);
             enableObject.SetActive(true);
             tradeItemImage.sprite = ShopItemData.Value.itemsTradeValues[tradeIndex].itemSprite;
-            tradeItemUnits = ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
-            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
-            shopItemUnitsTxt.text = "1";
+            tradeData.Value.tradedUnits = ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            tradeItemUnitsTxt.text = tradeData.Value.tradedUnits.ToString();
+            ShopItemUnitsTxt.text = "1";
         }
 
         public void IncreaseUnits()
         {
-            
-            tradeItemUnits += ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
-            shopItemUnits++;
+
+            TradeItemUnits += ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            Debug.Log(TradeItemUnits);
+            ShopItemUnits++;
 
             // CHECK FOR INVENTORY AND DISABLE/ENABLE INCREASE UNTIS BUTTONS
             //decreaseUnitsBtn.gameObject.SetActive(tradeItemUnits > currTradeItemValue);
-            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
-            shopItemUnitsTxt.text = shopItemUnits.ToString();
+            tradeItemUnitsTxt.text = TradeItemUnits.ToString();
+            ShopItemUnitsTxt.text = ShopItemUnits.ToString();
         }
 
         public void DecreaseUnits()
         {
-            tradeItemUnits -= ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
-            shopItemUnits--;
+            TradeItemUnits -= ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            ShopItemUnits--;
 
             //decreaseUnitsBtn.gameObject.SetActive(tradeItemUnits > currTradeItemValue);
-            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
-            shopItemUnitsTxt.text = shopItemUnits.ToString();
-        }
-
-        public void SealTrade()
-        {   
-            //Reflect on the profit visuals
-            //This is part of a undoable command so have to create UndoTrade()
-            if(ShopItemData.Value.itemsTradeValues[tradeIndex].itemType == ShopItem.itemTypes.Coins)
-            {
-                playerCoins.Value -= ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
-            }
-            else
-            {
-                inventoryUI.UpdateItem(true, ShopItemData.Value.shopItemType);
-                ChangeTradeItem();
-            }
+            tradeItemUnitsTxt.text = TradeItemUnits.ToString();
+            ShopItemUnitsTxt.text = ShopItemUnits.ToString();
         }
 
         private void ChangeTradeItem()
         {
-            shopItemUnits = 1;
-            shopItemUnitsTxt.text = "1";
-            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
+            ShopItemUnits = 1;
+            ShopItemUnitsTxt.text = "1";
+            tradeItemUnitsTxt.text = TradeItemUnits.ToString();
             decreaseUnitsBtn.gameObject.SetActive(false);
         }
     }
