@@ -48,6 +48,18 @@ namespace GPP
             }
         }
 
+        public void UndoAll()
+        {
+            if (_commands.Count == 0) return;
+
+            foreach (var command in _commands)
+            {
+                command.Undo();
+            }
+
+            _commands.Clear();
+        }
+
         public void Replay()
         {
             Execute();
