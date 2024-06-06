@@ -9500,6 +9500,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsOwned:
+  - itemType: 0
+    itemSprite: {fileID: 0}
+    unitsOwned: 1000
   - itemType: 1
     itemSprite: {fileID: 0}
     unitsOwned: 0
@@ -9508,6 +9511,7 @@ MonoBehaviour:
     unitsOwned: 0
   texts:
   - {fileID: 35861029}
+  - {fileID: 1710759768}
   - {fileID: 1710759768}
 --- !u!114 &1449515442
 MonoBehaviour:

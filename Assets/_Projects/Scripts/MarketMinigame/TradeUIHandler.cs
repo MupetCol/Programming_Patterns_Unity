@@ -49,26 +49,22 @@ namespace GPP
         {
 
             tradeIndex++;
-
-            Debug.Log(tradeItemConversions);
+            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             if (tradeIndex >= tradeItemConversions - 1)
             {
                 return false;
             }
-
-            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             return true;
         }
 
         public bool CheckPrevious()
         {
             tradeIndex--;
+            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             if (tradeIndex <= 0)
             {
                 return false;
             }
-
-            tradeData.Value.tradedItem = (itemTypes)tradeIndex;
             return true;
         }
 

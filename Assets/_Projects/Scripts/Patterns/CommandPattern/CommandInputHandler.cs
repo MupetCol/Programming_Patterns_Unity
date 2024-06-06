@@ -59,7 +59,8 @@ namespace GPP
 
         public void RunBuyCommand()
         {
-            Command command = new BuyCommand(_currenTrade.Value.tradedUnits, _playerCoins, _currenTrade.Value.tradedItem, _inventoryUI);
+            Command command = new BuyCommand(_currenTrade.Value.tradedUnits, _playerCoins,
+                _currenTrade.Value.boughtUnits, _currenTrade.Value.tradedItem, _currenTrade.Value.shopItem, _inventoryUI);
             CommandInvoker.Add(command);
         }
 
