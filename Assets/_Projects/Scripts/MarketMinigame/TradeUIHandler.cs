@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using System.Xml.Schema;
 using TMPro;
 using Unity.VisualScripting;
@@ -12,7 +13,7 @@ namespace GPP
     {
         [SerializeField] private Button nextItemBtn, prevItemBtn, increaseUnitsBtn, decreaseUnitsBtn;
         [SerializeField] private Image tradeItemImage;
-        [SerializeField] private TMP_Text tradeItemUnits, itemUnits;
+        [SerializeField] private TMP_Text tradeItemUnitsTxt, shopItemUnitsTxt;
         [SerializeField] private FloatReference playerCoins;
         [SerializeField] private ShopItemReference ShopItemData;
 
@@ -21,11 +22,43 @@ namespace GPP
         private GameObject UIParent;
         
         private InventoryUI inventoryUI;
-        private int currTradeItemValue = -1;
+
+        private int tradeIndex = 0;
+        private int tradeItemUnits = 1;
+        private int shopItemUnits = 1;
+
+        public bool CheckNext()
+        {
+
+            tradeIndex++;
+
+            Debug.Log(tradeItemConversions);
+            if (tradeIndex >= tradeItemConversions - 1)
+            {
+                return false;
+            }
+
+            ShopItemData.Value.tradeItemSelected = (itemTypes)tradeIndex;
+            return true;
+        }
+
+        public bool CheckPrevious()
+        {
+            tradeIndex--;
+            if (tradeIndex <= 0)
+            {
+                return false;
+            }
+
+
+            ShopItemData.Value.tradeItemSelected = (itemTypes)tradeIndex;
+            return true;
+        }
+
         private void Awake()
         {
             inventoryUI = FindObjectOfType<InventoryUI>();
-            ResetTrade();
+            ChangeTradeItem();
             prevItemBtn.gameObject.SetActive(false);
             decreaseUnitsBtn.gameObject.SetActive(false);
             UIParent = transform.GetChild(0).gameObject;
@@ -33,115 +66,89 @@ namespace GPP
 
         private void Update()
         {
-            if(ShopItemData.Value.shopItemType != ShopItem.itemTypes.Coins){
+            if(ShopItemData.Value.shopItemType != ShopItem.itemTypes.Coins && !UIParent.activeSelf){
                 //IF ISN'T COIN WE ASSUME ITS A VALID SHOP DATA VALUE
-                tradeItemConversions = ShopItemData.Value.itemsTradeValues.Count - 1;
-                currTradeItemValue = ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].tradeCost;
+                tradeItemConversions = ShopItemData.Value.itemsTradeValues.Count;
+                SetTradeUI(false, nextItemBtn.gameObject, prevItemBtn.gameObject);
                 UIParent.SetActive(true);}
-            else {
-                UIParent.SetActive(false); }
         }
 
         public void CloseTradeUI()
         {
             ShopItemData.Value.Reset();
+            ChangeTradeItem();
             UIParent.SetActive(false);
+            tradeIndex = 0;
         }
 
-        public void NextItem()
+        public void NextTradeItem()
         {
-            var nextTradeItem = NextTradeItem();
-            nextItemBtn.gameObject.SetActive(nextTradeItem);
-            prevItemBtn.gameObject.SetActive(true);
-            tradeItemImage.sprite = ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].itemSprite;
+            var isNextItem = CheckNext();
 
-            currTradeItemValue = ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].tradeCost;
-            ResetTrade();
+            SetTradeUI(isNextItem, prevItemBtn.gameObject, nextItemBtn.gameObject);
+            ChangeTradeItem();
         }
 
-        public void PreviousItem()
+        public void PreviousTradeItem()
         {
-            var prevTradeItem = PreviousTradeItem();
-            prevItemBtn.gameObject.SetActive(prevTradeItem);
-            nextItemBtn.gameObject.SetActive(true);
-            tradeItemImage.sprite = ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].itemSprite;
+            var isPreviousItem = CheckPrevious();
 
-            currTradeItemValue = ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].tradeCost;
-            ResetTrade();
+            SetTradeUI(isPreviousItem, nextItemBtn.gameObject, prevItemBtn.gameObject);
+            ChangeTradeItem();
+        }
+
+        private void SetTradeUI(bool buttonActiveState, GameObject enableObject, GameObject conditionalObject)
+        {
+            conditionalObject.SetActive(buttonActiveState);
+            enableObject.SetActive(true);
+            tradeItemImage.sprite = ShopItemData.Value.itemsTradeValues[tradeIndex].itemSprite;
+            tradeItemUnits = ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
+            shopItemUnitsTxt.text = "1";
         }
 
         public void IncreaseUnits()
         {
             
-            ShopItemData.Value.tradeAmmount +=currTradeItemValue;
+            tradeItemUnits += ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            shopItemUnits++;
 
-            decreaseUnitsBtn.gameObject.SetActive(ShopItemData.Value.tradeAmmount > currTradeItemValue);
-            tradeItemUnits.text = ShopItemData.Value.tradeAmmount.ToString();
-            UpdateTradeTotal();
+            // CHECK FOR INVENTORY AND DISABLE/ENABLE INCREASE UNTIS BUTTONS
+            //decreaseUnitsBtn.gameObject.SetActive(tradeItemUnits > currTradeItemValue);
+            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
+            shopItemUnitsTxt.text = shopItemUnits.ToString();
         }
 
         public void DecreaseUnits()
         {
-            ShopItemData.Value.tradeAmmount -=currTradeItemValue;
+            tradeItemUnits -= ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
+            shopItemUnits--;
 
-            decreaseUnitsBtn.gameObject.SetActive(ShopItemData.Value.tradeAmmount > currTradeItemValue);
-            tradeItemUnits.text = ShopItemData.Value.tradeAmmount.ToString();
-            UpdateTradeTotal();
+            //decreaseUnitsBtn.gameObject.SetActive(tradeItemUnits > currTradeItemValue);
+            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
+            shopItemUnitsTxt.text = shopItemUnits.ToString();
         }
 
         public void SealTrade()
         {   
             //Reflect on the profit visuals
             //This is part of a undoable command so have to create UndoTrade()
-            if(ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].itemType == ShopItem.itemTypes.Coins)
+            if(ShopItemData.Value.itemsTradeValues[tradeIndex].itemType == ShopItem.itemTypes.Coins)
             {
-                playerCoins.Value -= ShopItemData.Value.itemsTradeValues[ShopItemData.Value.tradeIndex].tradeCost;
+                playerCoins.Value -= ShopItemData.Value.itemsTradeValues[tradeIndex].tradeCost;
             }
             else
             {
                 inventoryUI.UpdateItem(true, ShopItemData.Value.shopItemType);
-                ResetTrade();
+                ChangeTradeItem();
             }
         }
 
-        public bool NextTradeItem()
+        private void ChangeTradeItem()
         {
-
-            ShopItemData.Value.tradeIndex++;
-
-            if (ShopItemData.Value.tradeIndex >= tradeItemConversions)
-            {
-                return false;
-            }
-
-            ShopItemData.Value.tradeItemSelected = (itemTypes)ShopItemData.Value.tradeIndex;
-            return true;
-        }
-
-        public bool PreviousTradeItem()
-        {
-            ShopItemData.Value.tradeIndex--;
-            if (ShopItemData.Value.tradeIndex <= tradeItemConversions)
-            {
-                return false;
-            }
-
-
-            ShopItemData.Value.tradeItemSelected = (itemTypes)ShopItemData.Value.tradeIndex;
-            return true;
-        }
-
-        private void UpdateTradeTotal()
-        {
-            int total = Mathf.FloorToInt(ShopItemData.Value.tradeAmmount / currTradeItemValue);
-            itemUnits.text = total.ToString();
-        }
-
-        private void ResetTrade()
-        {
-            ShopItemData.Value.tradeAmmount = currTradeItemValue;
-            itemUnits.text = "1";
-            tradeItemUnits.text = currTradeItemValue.ToString();
+            shopItemUnits = 1;
+            shopItemUnitsTxt.text = "1";
+            tradeItemUnitsTxt.text = tradeItemUnits.ToString();
             decreaseUnitsBtn.gameObject.SetActive(false);
         }
     }

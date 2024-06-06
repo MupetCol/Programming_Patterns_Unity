@@ -12,17 +12,14 @@ namespace GPP
         public ShopItemData data;
 
         private void Awake(){
-            transform.GetChild(0).GetComponent<Image>().sprite = data.itemSprite;   
-            //enumCount = tradeItems.GetNames(typeof(tradeItems)).Length - 1;
+            transform.GetChild(0).GetComponent<Image>().sprite = data.itemSprite;
         }
 
 
         public void SelectShopItem()
         {
-            TradeItemData.Value = data;
+            TradeItemData.Value.Init(data.itemsTradeValues, data.shopItemType, data.itemSprite);
         }
-
-
     }
 
     [System.Serializable]
@@ -34,22 +31,22 @@ namespace GPP
         public ShopItem.itemTypes tradeItemSelected = ShopItem.itemTypes.Coins;
         public ShopItem.itemTypes shopItemType = ShopItem.itemTypes.Coins;
 
-        [Range(1f, 100f)]
-        public int tradeIndex = 0;
-        //Min 1
-        [Range(1f, 100f)]
-        public int tradeAmmount = 1;
-
         //List of each type of item in the enum, below list of values of that item that costs this shop item
         public List<ItemTrade> itemsTradeValues = new List<ItemTrade>();
 
         public void Reset()
         {
             itemsTradeValues.Clear();
-            tradeAmmount = 1;
-            tradeIndex = 0;
             tradeItemSelected = ShopItem.itemTypes.Coins;
             shopItemType = ShopItem.itemTypes.Coins;
+            itemSprite = null;
+        }
+
+        public void Init(List<ItemTrade> itemsTradeValues, ShopItem.itemTypes shopItemType, Sprite itemSprite)
+        {
+            this.itemsTradeValues = new List<ItemTrade>(itemsTradeValues);
+            this.itemSprite = itemSprite;
+            this.shopItemType = shopItemType;
         }
     }
 
