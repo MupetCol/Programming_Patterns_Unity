@@ -1,0 +1,5 @@
+inventory data as scriptable object
+tradeable item as scriptable object cost, resellcost, units owned by player, etc etc, used by shops, reseller and all that 
+inventory scripta handles local data and puts it on the scriptable object for other scripts
+ui handle sees that scriptable object
+resell script also sees that scriptable object
